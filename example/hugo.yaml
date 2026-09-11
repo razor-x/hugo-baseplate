@@ -1,0 +1,26 @@
+baseURL: https://example.com/
+locale: en-US
+title: Baseplate Example
+disableKinds:
+  - rss
+  - taxonomy
+  - term
+
+params:
+  languageDir: rtl
+  mainClass: content
+  accentColor: rebeccapurple
+  remoteCss:
+    - https://cdnjs.cloudflare.com/ajax/libs/picocss/2.1.1/pico.classless.min.css
+  css:
+    - css/main.css
+  remoteJs:
+    - https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.13/dayjs.min.js
+  js:
+    - js/main.js
+  theme:
+    color: "#123456"
+
+module:
+  imports:
+    - path: github.com/razor-x/hugo-baseplate

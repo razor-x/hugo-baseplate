@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="{{ site.Language.Locale | default "en-US" }}"
+  dir="{{ site.Params.languageDir | default "ltr"}}">
+  <head>
+    {{ partial "head.html" . }}
+    {{ if templates.Exists "_partials/head-extra.html" }}
+      {{ partial "head-extra.html" . }}
+    {{ end }}
+    {{ partial "assets.html" . }}
+  </head>
+  <body
+    {{ if .Page.Params.classes }}
+      class="{{ delimit .Page.Params.classes " " }}"
+    {{ end  }}
+  >
+    {{ if templates.Exists "_partials/header.html" }}
+      {{ partial "header.html" . }}
+    {{ end }}
+    <main{{ with site.Params.mainClass }} class="{{ . }}"{{ end }}>
+      {{ block "main" . }}{{ end }}
+    </main>
+    {{ if templates.Exists "_partials/footer.html" }}
+      {{ partial "footer.html" . }}
+    {{ end }}
+  </body>
+</html>

@@ -1,0 +1,7 @@
+:root {
+  --pico-primary: {{ site.Params.accentColor }};
+}
+
+#day-of-week {
+  color: var(--pico-primary);
+}
