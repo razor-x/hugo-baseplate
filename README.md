@@ -3,7 +3,8 @@
 Build your own Hugo theme without starting from scratch.
 Baseplate loads your styles and scripts,
 adds page metadata for search and social sharing, and sets up your favicons.
-Bring your own layouts and design; Baseplate handles the boilerplate.
+Write your content in Markdown and add your own design.
+Baseplate includes default layouts, or you can supply your own.
 
 ## Installation
 
@@ -38,29 +39,19 @@ locale: en-US
 baseURL: https://example.com/
 ```
 
-Create `content/_index.md` with a title and description for your homepage.
-Baseplate uses these in page metadata and social sharing previews:
+Baseplate provides the minimal layouts Hugo needs, so you can add pages right away.
+For example, create your homepage at `content/_index.md`:
 
 ```markdown
 ---
 title: Home
 description: Welcome to my site.
 ---
-```
 
-Create `layouts/_default/home.html` in your site:
-
-```html
-{{ define "main" }}
-  <h1>{{ site.Title }}</h1>
-  <p>Welcome to my site.</p>
-{{ end }}
+Welcome to my site.
 ```
 
 Run `hugo server` and open the local URL to see your homepage.
-Replace the heading and paragraph with your own design.
-Keep them inside the `main` block;
-Baseplate supplies the surrounding page and loads your styles and scripts.
 
 To add navigation above your content, create `layouts/partials/header.html`:
 
@@ -88,6 +79,13 @@ For example:
 Baseplate includes these files on every page that uses its layout.
 
 ## Customize your pages
+
+To provide a description for pages without their own, set it in `hugo.yaml`:
+
+```yaml
+params:
+  description: Welcome to my site.
+```
 
 For a right-to-left site, set `params.languageDir` to `rtl`.
 To suggest a color for the browser's interface, set `params.theme.color`:
