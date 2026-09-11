@@ -147,6 +147,7 @@ Production builds fingerprint assets with content hashes for cache busting,
 so you can use long-lived cache headers while ensuring changed assets get new URLs.
 During local preview with `hugo server`,
 Baseplate keeps filenames simple and requests readable versions of remote libraries to make debugging easier.
+If a remote asset references a source map, Baseplate downloads and serves that map with the asset.
 
 You can also use Hugo template expressions in your local CSS and JavaScript, for example,
 to share a configured color between your site and its stylesheet.

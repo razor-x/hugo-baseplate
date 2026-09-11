@@ -20,7 +20,18 @@
   {{ $asset = resources.Fingerprint $asset }}
 {{ else }}
   {{ $target := path.Base $url }}
-  {{ $asset = $asset.Content | resources.FromString $target }}
+  {{ $content := $asset.Content }}
+  {{ range findRE `sourceMappingURL=[^\s*]+` $content 1 }}
+    {{ $reference := strings.TrimPrefix "sourceMappingURL=" . }}
+    {{ if not (strings.HasPrefix $reference "data:") }}
+      {{ $mapUrl := (urls.Parse $url).ResolveReference (urls.Parse $reference) }}
+      {{ with resources.GetRemote $mapUrl.String }}
+        {{ $map := resources.FromString (printf "%s.map" $target) .Content }}
+        {{ $content = replace $content (printf "sourceMappingURL=%s" $reference) (printf "sourceMappingURL=%s" $map.RelPermalink) }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+  {{ $asset = $content | resources.FromString $target }}
 {{ end }}
 
 {{ if strings.HasSuffix $asset.RelPermalink ".css" }}
