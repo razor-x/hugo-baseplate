@@ -57,7 +57,7 @@ Create `layouts/_default/home.html` in your site:
 {{ end }}
 ```
 
-Run `hugo server` and open the preview URL to see your homepage.
+Run `hugo server` and open the local URL to see your homepage.
 Replace the heading and paragraph with your own design.
 Keep them inside the `main` block;
 Baseplate supplies the surrounding page and loads your styles and scripts.
@@ -145,7 +145,7 @@ The [example](example) uses Pico CSS and jQuery this way.
 
 Production builds fingerprint assets with content hashes for cache busting,
 so you can use long-lived cache headers while ensuring changed assets get new URLs.
-During local preview with `hugo server`,
+During local development with `hugo server`,
 Baseplate keeps filenames simple and requests readable versions of remote libraries to make debugging easier.
 If a remote asset references a source map, Baseplate downloads and serves that map with the asset.
 
@@ -154,9 +154,17 @@ to share a configured color between your site and its stylesheet.
 Local JavaScript runs as a browser module;
 use `remoteJs` for libraries that provide browser globals,
 as jQuery does in the example.
-Baseplate does not currently minify local CSS or JavaScript or generate source maps.
-If you need these, use an asset build tool to write its output into `assets/`,
-then list the generated CSS and JavaScript files in `hugo.yaml`.
+
+Hugo minifies local CSS and JavaScript before fingerprinting them in production builds by default.
+To keep your local assets unminified, disable minification in `hugo.yaml`:
+
+```yaml
+params:
+  minify: false
+```
+Local CSS and JavaScript stay unminified during development with `hugo server`.
+Remote assets are unchanged.
+This uses Hugo's built-in minifier and does not generate source maps.
 
 For files you simply want to publish unchanged, put them under `static/`.
 
@@ -187,7 +195,7 @@ hugo --panicOnWarning
 
 The example uses the module from your local checkout.
 Build it after changing the templates to check that they still render successfully.
-Run `hugo server` from `example/` to preview your changes in the browser.
+Run `hugo server` from `example/` to view your changes locally in the browser.
 
 ### Source code
 

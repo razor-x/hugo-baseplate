@@ -2,6 +2,9 @@
 
 {{ $asset := resources.Get . | resources.ExecuteAsTemplate (path.Base .) . }}
 {{ if not $dev }}
+  {{ if ne site.Params.minify false }}
+    {{ $asset = resources.Minify $asset }}
+  {{ end }}
   {{ $asset = resources.Fingerprint $asset }}
 {{ end }}
 
