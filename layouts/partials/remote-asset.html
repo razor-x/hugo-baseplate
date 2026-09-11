@@ -7,11 +7,18 @@
 {{ end }}
 
 {{ $asset := resources.GetRemote $url }}
+{{ if and (not $asset) (ne $url .) }}
+  {{ $url = . }}
+  {{ $asset = resources.GetRemote $url }}
+{{ end }}
+{{ if not $asset }}
+  {{ errorf "Remote asset not found: %s" $url }}
+  {{ return }}
+{{ end }}
 
 {{ if not $dev }}
   {{ $asset = resources.Fingerprint $asset }}
 {{ else }}
-  {{ $content := $asset.Content |  }}
   {{ $target := path.Base $url }}
   {{ $asset = $asset.Content | resources.FromString $target }}
 {{ end }}

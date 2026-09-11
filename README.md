@@ -141,7 +141,7 @@ Hugo downloads it during the build and publishes it with your site,
 so visitors fetch it from your site rather than a third-party CDN.
 Remote styles load before your own styles,
 letting you customize a library's appearance.
-The [example](example) uses Pico CSS and Day.js this way.
+The [example](example) uses Pico CSS and jQuery this way.
 
 Production builds fingerprint assets with content hashes for cache busting,
 so you can use long-lived cache headers while ensuring changed assets get new URLs.
@@ -152,7 +152,7 @@ You can also use Hugo template expressions in your local CSS and JavaScript, for
 to share a configured color between your site and its stylesheet.
 Local JavaScript runs as a browser module;
 use `remoteJs` for libraries that provide browser globals,
-as Day.js does in the example.
+as jQuery does in the example.
 Baseplate does not currently minify local CSS or JavaScript or generate source maps.
 If you need these, use an asset build tool to write its output into `assets/`,
 then list the generated CSS and JavaScript files in `hugo.yaml`.

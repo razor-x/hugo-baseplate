@@ -1,3 +1,3 @@
 document.addEventListener("DOMContentLoaded", () => {
-  document.querySelector("#day-of-week").textContent = dayjs().format("dddd");
+  $("#day-of-week").text(new Date().toLocaleDateString("en-US", { weekday: "long" }));
 });

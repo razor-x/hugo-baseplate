@@ -15,7 +15,7 @@ params:
   css:
     - css/main.css
   remoteJs:
-    - https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.13/dayjs.min.js
+    - https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js
   js:
     - js/main.js
   theme:
